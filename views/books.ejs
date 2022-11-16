@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <% if (user) { %>
+        <p>Welcome <%= user.username %> to underground bookstore
+        </p>
+        <p>Below is the list of books we have available</p>
+        <ul>
+            <% bookstore.forEach(function(book) { %>
+                <li>
+                    <%= book.title %>
+                </li>
+                <% }) %>
+        </ul>
+        <form action="/logout" method="post">
+            <button type="submit"> Logout</button>
+        </form>
+        <% } else {%>
+            <p>Please <a href="/login">logi</a> to view book list</p>
+            <% } %>
+</body>
+
+</html>
