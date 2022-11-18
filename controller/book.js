@@ -3,7 +3,7 @@ const bookModel = require('../model/book')
 function getAllBooks(req, res) {
     bookModel.find()
         .then(books => {
-            res.send(books)
+            res.render('books', { user: req.user, books })
         })
         .catch(err => {
             console.log(err)
