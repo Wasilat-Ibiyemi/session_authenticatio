@@ -11,8 +11,7 @@ const userModel = new Schema({
     },
     password: {
         type: String,
-        require: true,
-        unique: true
+        require: true
     }
 })
 

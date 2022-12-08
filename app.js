@@ -43,7 +43,7 @@ app.use('/books', connectEnsureLogin.ensureLoggedIn(), bookRoute) /*ensures succ
 have access to the books route */ //connectensurelogin
 
 app.get('/', (req, res) => {
-    res.status(200).send('welcome')
+    res.render('index')
 }) //renders the homepage in views folder
 
 //rendering login and sign up pages
@@ -77,9 +77,13 @@ app.post('/login', passport.authenticate('local', { failureRedirect: '/' }), (re
     res.redirect('/books')
 })
 
-app.use('/logout', (req, res) => {
-    req.logout()
-    res.redirect('/')
+app.post('/logout', (req, res, next) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err)
+        }
+        res.redirect('/')
+    })
 })
 
 app.use((err, req, res, next) => {
